@@ -1,7 +1,6 @@
 import { csvParse } from 'd3-dsv';
 import './App.css';
-import { useState, useCallback, useEffect } from 'react'
-import { csvFormat } from 'd3-dsv';
+import { useState, useEffect } from 'react'
 import { csv } from 'd3';
 import { message } from './TweetViz/Message';
 
@@ -19,13 +18,5 @@ const App = ()  => {
 
   return <div>{data ? 'Data is ' + message(data): 'Loading....'} </div>;
 };
-
-  return(
-  <div>
-    <pre id='messageContainer'>
-      {message}
-    </pre>
-  </div>)
-}
 
 export default App;
