@@ -1,28 +1,24 @@
 import { csvParse } from 'd3-dsv';
 import './App.css';
+import { useState, useCallback, useEffect } from 'react'
+import { csvFormat } from 'd3-dsv';
+import { csv } from 'd3';
+import { message } from './TweetViz/Message';
+
+ 
+const height = 960;
+const width = 500;
+const csvUrl = "https://gist.githubusercontent.com/curran/b236990081a24761f7000567094914e0/raw/cssNamedColors.csv"
 
 const App = ()  => {
- 
-  // const promise = fetch(url);
-  // promise.then(response =>{
-  //   response.text().then(text =>{
-  //     console.log(text)
-  //   })
-  // })
-  const fetchText = async (url) => {
-    const response = await fetch(url);
-    return await response.text();
-  }
-  const csvUrl = "https://gist.githubusercontent.com/curran/b236990081a24761f7000567094914e0/raw/cssNamedColors.csv"
+  const [data, setData] = useState(null);
 
-  let message = ''
+  useEffect(() => {
+    csv(csvUrl).then(setData);
+  }, []);
 
-  fetchText(csvUrl).then(text => {
-    const data = csvParse(text);
-    message += data.length + ' rows\n';
-    message += data.columns.length + ' columns\n';
-    message += Math.round(text.length / 1024) + ' kB\n';
-  })
+  return <div>{data ? 'Data is ' + message(data): 'Loading....'} </div>;
+};
 
   return(
   <div>
