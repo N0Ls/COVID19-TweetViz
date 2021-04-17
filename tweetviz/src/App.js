@@ -1,7 +1,7 @@
 import './App.css';
 import './index.css'
 
-import { csv, scaleBand, scaleLinear, max} from 'd3';
+import { csv, scaleBand, scaleLinear, max, format} from 'd3';
 import { useData } from './TweetViz/useData';
 import { AxisBottom } from './TweetViz/AxisBottom'
 import { AxisLeft } from './TweetViz/AxisLeft'
@@ -21,6 +21,9 @@ const xAxisLabelOffset = 60;
 
 const yValue = d => d.Country;
 const xValue = d => d.Population;
+
+const siFormat = format('.2s')
+const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B')
 
 const App = ()  => {
 
@@ -44,7 +47,11 @@ const App = ()  => {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <AxisBottom xScale={xScale} innerHeight={innerHeight}/>
+        <AxisBottom 
+          xScale={xScale}
+          innerHeight={innerHeight}
+          tickFormat={xAxisTickFormat}
+        />
         <AxisLeft yScale={yScale}/>
         <text
           className='axis-label'
@@ -59,6 +66,7 @@ const App = ()  => {
           yScale={yScale}
           xValue={xValue}
           yValue={yValue}
+          tooltipFormat={xAxisTickFormat}
         />
       </g>
     </svg>
