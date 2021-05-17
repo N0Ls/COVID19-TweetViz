@@ -8,6 +8,6 @@ export const Marks = ({data, xScale, yScale, xValue, yValue, tooltipFormat}) => 
       r={d.influenceFactor}
       style={{fill : 'hsl(158, 95%, 33%)'}}
     >
-    <title>{tooltipFormat(xValue(d))}</title>
+    <title>{d.created_at}</title>
     </circle >
 ));

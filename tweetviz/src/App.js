@@ -1,7 +1,7 @@
 import './App.css';
 import './index.css'
 
-import { csv, scaleBand, scaleLinear, max, format} from 'd3';
+import { csv, scaleBand, scaleLinear, scaleTime, min, max, format} from 'd3';
 import { useData } from './TweetViz/useData';
 import { AxisBottom } from './TweetViz/AxisBottom'
 import { AxisLeft } from './TweetViz/AxisLeft'
@@ -19,7 +19,7 @@ const innerWidth = width - margin.left - margin.right;
 
 const xAxisLabelOffset = 60;
 
-const yValue = d => d.created_at;
+const yValue = d => d.formatedDate;
 const xValue = d => d.Population;
 
 const siFormat = format('.2s')
@@ -35,10 +35,10 @@ const App = ()  => {
   //console.log(data[0]);
   //.domain([0, max(data, xValue)])
 
-  const yScale = scaleBand()
-    .domain(data.map(yValue))
+  const yScale = scaleTime()
+    .domain([min(data, yValue), max(data, yValue)])
     .range([0, innerHeight])
-    .paddingInner(0.08);
+    .nice();
 
   const xScale = scaleLinear()
     .domain([0, width])

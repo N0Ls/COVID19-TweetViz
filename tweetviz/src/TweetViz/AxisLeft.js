@@ -1,14 +1,14 @@
 export const AxisLeft = ({yScale}) => (
-    yScale.domain().map(tickValue =>(
-    <g className='tick'>
-      <text style={{textAnchor:'end'}}
-        key={tickValue}
-        dy={"0.32em"}
-        x={-12}
-        y={yScale(tickValue)+ yScale.bandwidth()/2}
-      >
-        {tickValue}
-      </text>
-      </g>
-    ))
+  yScale.ticks().map(tickValue =>(
+    <g className="tick" key={tickValue} transform={`translate(0,${yScale(tickValue)})`}>
+    <text
+      x={-50} 
+      dy = {"0.71em"}
+      style={{textAnchor : 'middle'}}
+    >
+      {tickValue.toLocaleString([],{month: "short", day: "2-digit"})}
+    </text>
+    </g>
+  ))
   )
+

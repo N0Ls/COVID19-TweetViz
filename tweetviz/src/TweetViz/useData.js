@@ -16,7 +16,7 @@ export const useData = () =>{
         }
         csv(csvUrl, row).then(data => {
         setData(data.filter(d => 
-            d.influenceFactor > 30
+            d.influenceFactor > 15
         ))
         });
     }, []);
