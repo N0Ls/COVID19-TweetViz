@@ -9,8 +9,8 @@ import { Marks } from './TweetViz/Marks'
 
 
 
-const width = 1000;
-const height = 600;
+const width = 500;
+const height = 1500;
 const margin = {left : 250, right : 20, bottom:100, top:50};
 const centerY = height/2;
 
@@ -19,7 +19,7 @@ const innerWidth = width - margin.left - margin.right;
 
 const xAxisLabelOffset = 60;
 
-const yValue = d => d.Country;
+const yValue = d => d.created_at;
 const xValue = d => d.Population;
 
 const siFormat = format('.2s')
@@ -40,7 +40,7 @@ const App = ()  => {
     .paddingInner(0.08);
 
   const xScale = scaleLinear()
-    .domain([0, max(data, xValue)])
+    .domain([0, width])
     .range([0, innerWidth]);
     
 

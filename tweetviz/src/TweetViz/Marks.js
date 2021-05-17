@@ -1,14 +1,13 @@
 export const Marks = ({data, xScale, yScale, xValue, yValue, tooltipFormat}) => (
     data.map(d =>
-    <rect
+    <circle 
       className ="mark"
       key={yValue(d)}
-      x={0}
-      y={yScale(yValue(d))}
-      width={xScale(xValue(d))}
-      height={yScale.bandwidth()}
+      cx={0}
+      cy={yScale(yValue(d))}
+      r={d.influenceFactor}
       style={{fill : 'hsl(158, 95%, 33%)'}}
     >
     <title>{tooltipFormat(xValue(d))}</title>
-    </rect>
+    </circle >
 ));

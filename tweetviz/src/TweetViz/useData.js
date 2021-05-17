@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { csv } from 'd3';
+import data from "./Data/1.csv";
 
-const csvUrl = "https://gist.githubusercontent.com/curran/0ac4077c7fc6390f5dd33bf5c06cb5ff/raw/605c54080c7a93a417a3cea93fd52e7550e76500/UN_Population_2019.csv"
+const csvUrl = data
 
 
 export const useData = () =>{
@@ -9,13 +10,18 @@ export const useData = () =>{
 
     useEffect(() => {
         const row = d => {
-        d.Population = parseFloat(d['2020']) * 1000;
-        return d;
+            d.influenceFactor = Math.log10(1+ ( d.retweet_count* 4.2)) * Math.log10(1+(d.favorite_count*1.2)) * Math.log10(1+(d.user_followers_count/(1+d.user_friends_count)));
+            d.formatedDate = new Date(Date.parse(d.created_at));
+            return d;
         }
         csv(csvUrl, row).then(data => {
-        setData(data.slice(0,10))
+        setData(data.filter(d => 
+            d.influenceFactor > 30
+        ))
         });
     }, []);
+
+    console.log(data?data:"not loaded")
 
     return data;
 }
