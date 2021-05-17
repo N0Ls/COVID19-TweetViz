@@ -9,7 +9,7 @@ import { Marks } from './TweetViz/Marks'
 
 
 
-const width = 500;
+const width = 1000;
 const height = 1500;
 const margin = {left : 250, right : 20, bottom:100, top:50};
 const centerY = height/2;
@@ -33,6 +33,7 @@ const App = ()  => {
   }
 
   //console.log(data[0]);
+  //.domain([0, max(data, xValue)])
 
   const yScale = scaleBand()
     .domain(data.map(yValue))
