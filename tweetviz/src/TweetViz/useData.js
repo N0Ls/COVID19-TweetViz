@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import { csv } from 'd3';
 import data from "./Data/1.csv";
 
+import {yScale} from "../App.js"
+
+import App from '../App';
+
 const csvUrl = data
 
 

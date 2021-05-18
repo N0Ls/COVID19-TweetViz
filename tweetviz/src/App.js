@@ -1,7 +1,8 @@
 import './App.css';
 import './index.css'
 
-import { csv, scaleBand, scaleLinear, scaleTime, min, max, format} from 'd3';
+
+import { csv, scaleBand, scaleLinear, scaleTime, min, max, format, forceSimulation, forceCollide, forceX, forceY, forceManyBody, timeout} from 'd3';
 import { useData } from './TweetViz/useData';
 import { AxisBottom } from './TweetViz/AxisBottom'
 import { AxisLeft } from './TweetViz/AxisLeft'
@@ -9,7 +10,7 @@ import { Marks } from './TweetViz/Marks'
 
 
 
-const width = 1000;
+const width = 1500;
 const height = 1500;
 const margin = {left : 250, right : 20, bottom:100, top:50};
 const centerY = height/2;
@@ -20,7 +21,7 @@ const innerWidth = width - margin.left - margin.right;
 const xAxisLabelOffset = 60;
 
 const yValue = d => d.formatedDate;
-const xValue = d => d.Population;
+const xValue = d => d.x;
 
 const siFormat = format('.2s')
 const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B')
@@ -32,21 +33,54 @@ const App = ()  => {
     return(<div>Loading....</div>)
   }
 
+
   //console.log(data[0]);
   //.domain([0, max(data, xValue)])
+  let simulation;
 
-  const yScale = scaleTime()
-    .domain([min(data, yValue), max(data, yValue)])
-    .range([0, innerHeight])
-    .nice();
 
-  const xScale = scaleLinear()
-    .domain([0, width])
-    .range([0, innerWidth]);
+
+const yScale = scaleTime()
+  .domain([min(data, yValue), max(data, yValue)])
+  .range([0, innerHeight])
+  .nice();
+
+const xScale = scaleLinear()
+  .domain([min(data, xValue), max(data, xValue)])
+  .range([0, innerWidth]);
+
+
+  data.map(d => d.fy = yScale(yValue(d)))
+
+
+  // console.log(simulation)
     
 
+  if(data){
+    simulation = forceSimulation(data)
+    .force("collide", forceCollide(d=> d.influenceFactor))
+    // .force('charge', forceManyBody().strength(-150))
+    .stop()
+  
+    
+  } 
+
+  const restartSim = () => {
+    simulation.tick()
+    console.log("pute")
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('This will run after 1 second!')
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+
+
   return (
-    <svg width={width} height={height}>
+    <svg width={width} height={height} onClick={restartSim}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
         <AxisBottom 
           xScale={xScale}
