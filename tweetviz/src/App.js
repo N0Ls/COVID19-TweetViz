@@ -61,8 +61,9 @@ const xScale = scaleLinear()
     .force("collide", forceCollide(d=> d.influenceFactor))
     // .force('charge', forceManyBody().strength(-150))
     .stop()
+    .tick(240)
   
-    
+
   } 
 
   const restartSim = () => {
@@ -70,12 +71,6 @@ const xScale = scaleLinear()
     console.log("pute")
   }
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('This will run after 1 second!')
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
 
 
