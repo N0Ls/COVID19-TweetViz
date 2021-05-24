@@ -10,8 +10,8 @@ import { Marks } from './TweetViz/Marks'
 
 
 
-const width = 1500;
-const height = 1500;
+const width = 3000;
+const height = 5000;
 const margin = {left : 250, right : 20, bottom:100, top:50};
 const centerY = height/2;
 
@@ -22,6 +22,7 @@ const xAxisLabelOffset = 60;
 
 const yValue = d => d.formatedDate;
 const xValue = d => d.x;
+const veracity = d => d.veracity;
 
 const siFormat = format('.2s')
 const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B')
@@ -58,7 +59,7 @@ const xScale = scaleLinear()
 
   if(data){
     simulation = forceSimulation(data)
-    .force("collide", forceCollide(d=> d.influenceFactor))
+    .force("collide", forceCollide(d=> d.influenceNumber+10))
     // .force('charge', forceManyBody().strength(-150))
     .stop()
     .tick(240)
@@ -97,6 +98,7 @@ const xScale = scaleLinear()
           xValue={xValue}
           yValue={yValue}
           tooltipFormat={xAxisTickFormat}
+          veracity={veracity}
         />
       </g>
     </svg>
