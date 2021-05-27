@@ -1,107 +1,126 @@
-import './App.css';
-import './index.css'
+import "./App.css";
+import "./index.css";
 
-
-import { csv, scaleBand, scaleLinear, scaleTime, min, max, format, forceSimulation, forceCollide, forceX, forceY, forceManyBody, timeout} from 'd3';
-import { useData } from './TweetViz/useData';
-import { AxisBottom } from './TweetViz/AxisBottom'
-import { AxisLeft } from './TweetViz/AxisLeft'
-import { Marks } from './TweetViz/Marks'
-
-
+import React, { useEffect, useState } from "react";
+import {
+  scaleLinear,
+  scaleTime,
+  min,
+  max,
+  format,
+  forceSimulation,
+  forceCollide,
+} from "d3";
+import { useData } from "./hooks/useData";
+import { AxisBottom } from "./components/visualization/AxisBottom";
+import { AxisLeft } from "./components/visualization/AxisLeft";
+import { Marks } from "./components/visualization/Marks";
+import { useStoreContext } from "./store/StoreContext";
+import { useStoreDispatchContext } from "./store/StoreDispatchContext";
+import { filterObjs } from "./utils/arrays"
 
 const width = 3000;
 const height = 5000;
-const margin = {left : 250, right : 20, bottom:100, top:50};
-const centerY = height/2;
+const margin = { left: 250, right: 20, bottom: 100, top: 50 };
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.left - margin.right;
 
 const xAxisLabelOffset = 60;
 
-const yValue = d => d.formatedDate;
-const xValue = d => d.x;
-const veracity = d => d.veracity;
+const yValue = (d) => d.formatedDate;
+const xValue = (d) => d.x;
+const veracity = (d) => d.veracity;
 
-const siFormat = format('.2s')
-const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B')
+const siFormat = format(".2s");
+const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
 
-const App = ()  => {
+const App = () => {
+  // const [data, setData] = useState(null);
+  const [filteredTweets, setFilteredTweets] = useState(null);
+
+  const state = useStoreContext();
+  const dispatch = useStoreDispatchContext();
 
   const data = useData();
-  if(!data){
-    return(<div>Loading....</div>)
+
+  useEffect(() => {
+    if (!state.tweets && data) dispatch({ type: "tweets/provide", data: data });
+  }, [data]);
+
+  useEffect(() => {
+    if (state.tweets) {
+      setFilteredTweets(
+        filterObjs(tweet => tweet.type === state.type)(state.tweets)
+      );
+    }
+  }, [state.tweets]);
+
+  if (!data || !filteredTweets) {
+    return <div style={{ color: "white" }}>Loading...</div>;
   }
 
+  const toggle = () => {
+    dispatch({ type: "type/toggle" });
+    setFilteredTweets(
+      filterObjs(tweet => tweet.type === state.type)(state.tweets)
+    );
+  };
 
-  //console.log(data[0]);
-  //.domain([0, max(data, xValue)])
-  let simulation;
+  let simulation = null;
 
+  const yScale = scaleTime()
+    .domain([min(filteredTweets, yValue), max(filteredTweets, yValue)])
+    .range([0, innerHeight])
+    .nice();
 
+  const xScale = scaleLinear()
+    .domain([min(filteredTweets, xValue), max(filteredTweets, xValue)])
+    .range([0, innerWidth]);
 
-const yScale = scaleTime()
-  .domain([min(data, yValue), max(data, yValue)])
-  .range([0, innerHeight])
-  .nice();
+  filteredTweets.map((d) => (d.fy = yScale(yValue(d))));
 
-const xScale = scaleLinear()
-  .domain([min(data, xValue), max(data, xValue)])
-  .range([0, innerWidth]);
-
-
-  data.map(d => d.fy = yScale(yValue(d)))
-
-
-  // console.log(simulation)
-    
-
-  if(data){
-    simulation = forceSimulation(data)
-    .force("collide", forceCollide(d=> d.influenceNumber+10))
-    // .force('charge', forceManyBody().strength(-150))
-    .stop()
-    .tick(240)
-  
-
-  } 
-
-  const restartSim = () => {
-    simulation.tick()
-    console.log("pute")
+  if (filteredTweets) {
+    simulation = forceSimulation(filteredTweets)
+      .force(
+        "collide",
+        forceCollide((d) => d.influenceNumber + 10)
+      )
+      .stop()
+      .tick(240);
   }
-
-
-
 
   return (
-    <svg width={width} height={height} onClick={restartSim}>
-      <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <AxisBottom 
-          xScale={xScale}
-          innerHeight={innerHeight}
-          tickFormat={xAxisTickFormat}
-        />
-        <AxisLeft yScale={yScale}/>
-        <text
-          className='axis-label'
-          x={innerWidth / 2}
-          y={innerHeight + xAxisLabelOffset}
-          textAnchor='middle'>
+    <>
+      <button onClick={toggle}>Switch</button>
+      <svg width={width} height={height}>
+        <g transform={`translate(${margin.left}, ${margin.top})`}>
+          <AxisBottom
+            xScale={xScale}
+            innerHeight={innerHeight}
+            tickFormat={xAxisTickFormat}
+          />
+          <AxisLeft yScale={yScale} />
+          <text
+            className="axis-label"
+            x={innerWidth / 2}
+            y={innerHeight + xAxisLabelOffset}
+            textAnchor="middle"
+          >
             Population
-        </text>
-        <Marks
-          data={data}
-          xScale={xScale}
-          yScale={yScale}
-          xValue={xValue}
-          yValue={yValue}
-          tooltipFormat={xAxisTickFormat}
-          veracity={veracity}
-        />
-      </g>
-    </svg>
+          </text>
+          <Marks
+            data={filteredTweets}
+            xScale={xScale}
+            yScale={yScale}
+            xValue={xValue}
+            yValue={yValue}
+            tooltipFormat={xAxisTickFormat}
+            veracity={veracity}
+          />
+        </g>
+      </svg>
+    </>
   );
 };
 
