@@ -15,12 +15,73 @@ code {
     monospace;
 }
 
+.Viz{
+  display: flex;
+  flex-direction: row;
+}
+.Graph{
+  transform: translate(350px,0px);
+}
+
+.Infos{
+  min-width: 400px;
+  width: 400px;
+  position: fixed;
+  top: 25px;
+  left : 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+.switch_button{
+  margin-bottom: 25px;
+}
+.tweet{
+  padding: 15px;
+  color :white;
+  border: white 3px solid;
+  border-radius: 20px;
+}
+
+.tweet_footer{
+  display: flex;
+  flex-direction: column;
+}
+
+.user_infos{
+  width: 100%;
+  display: flex;
+}
+
+.user_name{
+  width: 100%;
+}
+.user_display_name{
+  margin : 0;
+}
+.user_handle{
+  margin : 0;
+}
+
+.badge{
+  max-width: 16px;
+  margin-left: 5px;
+}
+
+.tweet_influence{
+  display: flex;
+  flex-direction: row;
+}
+.tweet_influence > div > span{
+  margin-right : 5px;
+}
+
 .tick line{
-  stroke : #c0c0bb;
+  stroke : white;
 }
 
 .tick text {
-  fill : #8E8883;
+  fill : white;
   font-family: 'Poppins', sans-serif;
 }
 

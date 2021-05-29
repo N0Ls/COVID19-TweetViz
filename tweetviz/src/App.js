@@ -18,9 +18,10 @@ import { Marks } from "./components/visualization/Marks";
 import { useStoreContext } from "./store/StoreContext";
 import { useStoreDispatchContext } from "./store/StoreDispatchContext";
 import { filterObjs } from "./utils/arrays";
+import { Tweet } from "./components/visualization/Tweet";
 
-const width = 3000;
-const height = 5000;
+const width = 1500;
+const height = 6000;
 const margin = { left: 250, right: 20, bottom: 100, top: 50 };
 
 const innerHeight = height - margin.top - margin.bottom;
@@ -93,7 +94,7 @@ const App = () => {
     simulation = forceSimulation(filteredTweets)
       .force(
         "collide",
-        forceCollide((d) => d.influenceNumber + 10)
+        forceCollide((d) => d.influenceNumber*0.4 + 5)
       )
       .stop()
       .tick(240);
@@ -101,34 +102,28 @@ const App = () => {
 
   return (
     <>
-      <button onClick={toggle}>Switch</button>
-      <svg width={width} height={height}>
-        <g transform={`translate(${margin.left}, ${margin.top})`}>
-          <AxisBottom
-            xScale={xScale}
-            innerHeight={innerHeight}
-            tickFormat={xAxisTickFormat}
-          />
-          <AxisLeft yScale={yScale} />
-          <text
-            className="axis-label"
-            x={innerWidth / 2}
-            y={innerHeight + xAxisLabelOffset}
-            textAnchor="middle"
-          >
-            Population
-          </text>
-          <Marks
-            data={filteredTweets}
-            xScale={xScale}
-            yScale={yScale}
-            xValue={xValue}
-            yValue={yValue}
-            tooltipFormat={xAxisTickFormat}
-            veracity={veracity}
-          />
-        </g>
-      </svg>
+    <div className="Viz">
+      <div className="Infos">
+        <button className="switch_button" onClick={toggle}>Switch</button>
+        <Tweet d={state.selected}></Tweet>
+      </div>
+      <div className="Graph">
+        <svg width={width} height={height}>
+          <g transform={`translate(${margin.left}, ${margin.top})`}>
+            <AxisLeft yScale={yScale} innerWidth={innerWidth} />
+            <Marks
+              data={filteredTweets}
+              xScale={xScale}
+              yScale={yScale}
+              xValue={xValue}
+              yValue={yValue}
+              tooltipFormat={xAxisTickFormat}
+              veracity={veracity}
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
     </>
   );
 };

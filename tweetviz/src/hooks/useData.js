@@ -13,7 +13,7 @@ export const useData = () => {
     };
     csv(csvUrl, row).then((data) => {
       setData(
-        filterObjs(d => parseFloat(d.influenceNumber) > 5 &&
+        filterObjs(d => parseFloat(d.influenceNumber) > 30 &&
         d.formatedDate.getFullYear() > 2019)(data));
     });
   }, []);
