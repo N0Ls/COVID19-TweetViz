@@ -28,3 +28,7 @@ code {
   fill: #8E8883;
   font-size: 1.82em;
 }
+
+.mark:hover {
+  cursor: pointer
+}

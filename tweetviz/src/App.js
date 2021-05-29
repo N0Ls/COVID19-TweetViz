@@ -17,7 +17,7 @@ import { AxisLeft } from "./components/visualization/AxisLeft";
 import { Marks } from "./components/visualization/Marks";
 import { useStoreContext } from "./store/StoreContext";
 import { useStoreDispatchContext } from "./store/StoreDispatchContext";
-import { filterObjs } from "./utils/arrays"
+import { filterObjs } from "./utils/arrays";
 
 const width = 3000;
 const height = 5000;
@@ -51,19 +51,28 @@ const App = () => {
   useEffect(() => {
     if (state.tweets) {
       setFilteredTweets(
-        filterObjs(tweet => tweet.type === state.type)(state.tweets)
+        filterObjs((tweet) => tweet.type === state.type)(state.tweets)
       );
     }
   }, [state.tweets]);
+
+  // useEffect(() => {
+  //   if (filteredTweets) {
+  //     dispatch({ type: "selected/update", data: filteredTweets[0] });
+  //     console.log(filteredTweets[0])
+  //   }
+  // }, [filteredTweets]);
 
   if (!data || !filteredTweets) {
     return <div style={{ color: "white" }}>Loading...</div>;
   }
 
+  // dispatch({ type: "selected/update", data: filteredTweets[0] });
+
   const toggle = () => {
     dispatch({ type: "type/toggle" });
     setFilteredTweets(
-      filterObjs(tweet => tweet.type === state.type)(state.tweets)
+      filterObjs((tweet) => tweet.type === state.type)(state.tweets)
     );
   };
 
