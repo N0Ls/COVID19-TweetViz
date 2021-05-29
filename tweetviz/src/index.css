@@ -20,9 +20,8 @@ code {
   flex-direction: row;
 }
 .Graph{
-  transform: translate(350px,0px);
+  transform: translate(400px,50px);
 }
-
 .Infos{
   min-width: 400px;
   width: 400px;
@@ -33,13 +32,37 @@ code {
   display: flex;
   flex-direction: column;
 }
+.title{
+  color: white;
+  font-size: 3em;
+  text-align: center;
+}
+
+.data_type{
+  text-transform: uppercase;
+}
+
+
 .switch_button{
+  color: white;
+  font-size : 1.2em;
+  width: 100%;
+  height: 50px;
   margin-bottom: 25px;
+  background-color: transparent;
+  border: white 2px solid;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+.switch_button:hover {
+  background-color: gold; /* Green */
+  color: white;
 }
 .tweet{
   padding: 15px;
   color :white;
-  border: white 3px solid;
+  border: white 2px solid;
   border-radius: 20px;
 }
 
@@ -74,6 +97,9 @@ code {
 }
 .tweet_influence > div > span{
   margin-right : 5px;
+}
+.tweet_influence > div{
+  margin-right: 10px;
 }
 
 .tick line{

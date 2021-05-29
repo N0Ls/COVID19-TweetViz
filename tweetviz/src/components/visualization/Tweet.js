@@ -18,8 +18,11 @@ return(<>
         </div>
         <div className="tweet_footer">
           <div className="tweet_date">
-            {d.formatedDate.getHours()}:{d.formatedDate.getMinutes()} ·{" "}
-            {d.formatedDate.getDate()}/{d.formatedDate.getMonth() + 1}/
+            {d.formatedDate.getHours() < 10 ? "0"+d.formatedDate.getHours():d.formatedDate.getHours()}
+            :
+            {d.formatedDate.getMinutes()< 10 ? "0" +d.formatedDate.getMinutes():d.formatedDate.getMinutes()}
+            {" "} · {" "}
+            {d.formatedDate.getDate()}/{d.formatedDate.getMonth() + 1 < 10 ? "0"+(d.formatedDate.getMonth() + 1):d.formatedDate.getMonth() + 1}/
             {d.formatedDate.getYear()}
           </div>
           <div className="tweet_influence">

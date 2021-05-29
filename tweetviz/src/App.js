@@ -22,7 +22,7 @@ import { Tweet } from "./components/visualization/Tweet";
 
 const width = 1500;
 const height = 6000;
-const margin = { left: 250, right: 20, bottom: 100, top: 50 };
+const margin = { left: 150, right: 20, bottom: 100, top: 50 };
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.left - margin.right;
@@ -108,9 +108,10 @@ const App = () => {
         <Tweet d={state.selected}></Tweet>
       </div>
       <div className="Graph">
+        <h1 className="title">COVID19 - Tweet Viz : <span className="data_type">{state.type==="claim"?state.type+"s":state.type}</span> </h1>
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <AxisLeft yScale={yScale} innerWidth={innerWidth} />
+            <AxisLeft yScale={yScale} innerWidth={innerWidth} innerHeight={innerHeight}/>
             <Marks
               data={filteredTweets}
               xScale={xScale}
