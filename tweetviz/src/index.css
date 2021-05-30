@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(13,26,38);
+  background-color: rgb(13, 26, 38);
 }
 
 code {
@@ -15,37 +15,39 @@ code {
     monospace;
 }
 
-.Viz{
+.Viz {
   display: flex;
   flex-direction: row;
 }
-.Graph{
-  transform: translate(400px,50px);
+
+.Graph {
+  transform: translate(400px, 50px);
 }
-.Infos{
+
+.Infos {
   min-width: 400px;
   width: 400px;
   position: fixed;
   top: 25px;
-  left : 20px;
+  left: 20px;
 
   display: flex;
   flex-direction: column;
 }
-.title{
+
+.title {
   color: white;
   font-size: 3em;
   text-align: center;
 }
 
-.data_type{
+.data_type {
   text-transform: uppercase;
 }
 
-
-.switch_button{
+.switch_button {
   color: white;
-  font-size : 1.2em;
+  font-size: 1.2em;
   width: 100%;
   height: 50px;
   margin-bottom: 25px;
@@ -56,58 +58,64 @@ code {
 }
 
 .switch_button:hover {
-  background-color: gold; /* Green */
+  background-color: rgb(255, 215, 0, 0.85);
   color: white;
+  cursor: pointer;
 }
-.tweet{
+
+.tweet {
   padding: 15px;
-  color :white;
+  color: white;
   border: white 2px solid;
   border-radius: 20px;
 }
 
-.tweet_footer{
+.tweet_footer {
   display: flex;
   flex-direction: column;
 }
 
-.user_infos{
+.user_infos {
   width: 100%;
   display: flex;
 }
 
-.user_name{
+.user_name {
   width: 100%;
 }
-.user_display_name{
-  margin : 0;
-}
-.user_handle{
-  margin : 0;
+
+.user_display_name {
+  margin: 0;
 }
 
-.badge{
+.user_handle {
+  margin: 0;
+}
+
+.badge {
   max-width: 16px;
   margin-left: 5px;
 }
 
-.tweet_influence{
+.tweet_influence {
   display: flex;
   flex-direction: row;
 }
-.tweet_influence > div > span{
-  margin-right : 5px;
+
+.tweet_influence>div>span {
+  margin-right: 5px;
 }
-.tweet_influence > div{
+
+.tweet_influence>div {
   margin-right: 10px;
 }
 
-.tick line{
-  stroke : white;
+.tick line {
+  stroke: white;
 }
 
 .tick text {
-  fill : white;
+  fill: white;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -118,4 +126,43 @@ code {
 
 .mark:hover {
   cursor: pointer
+}
+
+.spinner-box {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.circle-border {
+  width: 110px;
+  height: 110px;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgb(255, 215, 0);
+  background: linear-gradient(0deg, rgba(255, 215, 0, 0.1) 33%, rgb(255, 215, 0) 100%);
+  animation: spin .8s linear 0s infinite;
+}
+
+.circle-core {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(13, 26, 38);
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }

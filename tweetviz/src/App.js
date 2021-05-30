@@ -14,6 +14,7 @@ import {
 import { useData } from "./hooks/useData";
 import { AxisBottom } from "./components/visualization/AxisBottom";
 import { AxisLeft } from "./components/visualization/AxisLeft";
+import { Loading } from "./components/common/Loading";
 import { Marks } from "./components/visualization/Marks";
 import { useStoreContext } from "./store/StoreContext";
 import { useStoreDispatchContext } from "./store/StoreDispatchContext";
@@ -65,7 +66,7 @@ const App = () => {
   // }, [filteredTweets]);
 
   if (!data || !filteredTweets) {
-    return <div style={{ color: "white" }}>Loading...</div>;
+    return <Loading />;
   }
 
   // dispatch({ type: "selected/update", data: filteredTweets[0] });
@@ -94,7 +95,7 @@ const App = () => {
     simulation = forceSimulation(filteredTweets)
       .force(
         "collide",
-        forceCollide((d) => d.influenceNumber*0.4 + 5)
+        forceCollide((d) => d.influenceNumber * 0.4 + 5)
       )
       .stop()
       .tick(240);
@@ -102,29 +103,40 @@ const App = () => {
 
   return (
     <>
-    <div className="Viz">
-      <div className="Infos">
-        <button className="switch_button" onClick={toggle}>Switch</button>
-        <Tweet d={state.selected}></Tweet>
+      <div className="Viz">
+        <div className="Infos">
+          <button className="switch_button" onClick={toggle}>
+            Switch
+          </button>
+          <Tweet d={state.selected}></Tweet>
+        </div>
+        <div className="Graph">
+          <h1 className="title">
+            COVID19 - Tweet Viz :{" "}
+            <span className="data_type">
+              {state.type === "claim" ? state.type + "s" : state.type}
+            </span>{" "}
+          </h1>
+          <svg width={width} height={height}>
+            <g transform={`translate(${margin.left}, ${margin.top})`}>
+              <AxisLeft
+                yScale={yScale}
+                innerWidth={innerWidth}
+                innerHeight={innerHeight}
+              />
+              <Marks
+                data={filteredTweets}
+                xScale={xScale}
+                yScale={yScale}
+                xValue={xValue}
+                yValue={yValue}
+                tooltipFormat={xAxisTickFormat}
+                veracity={veracity}
+              />
+            </g>
+          </svg>
+        </div>
       </div>
-      <div className="Graph">
-        <h1 className="title">COVID19 - Tweet Viz : <span className="data_type">{state.type==="claim"?state.type+"s":state.type}</span> </h1>
-        <svg width={width} height={height}>
-          <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <AxisLeft yScale={yScale} innerWidth={innerWidth} innerHeight={innerHeight}/>
-            <Marks
-              data={filteredTweets}
-              xScale={xScale}
-              yScale={yScale}
-              xValue={xValue}
-              yValue={yValue}
-              tooltipFormat={xAxisTickFormat}
-              veracity={veracity}
-            />
-          </g>
-        </svg>
-      </div>
-    </div>
     </>
   );
 };
