@@ -57,12 +57,11 @@ const App = () => {
     }
   }, [state.tweets, state.type]);
 
-  // useEffect(() => {
-  //   if (filteredTweets) {
-  //     dispatch({ type: "selected/update", data: filteredTweets[0] });
-  //     console.log(filteredTweets[0])
-  //   }
-  // }, [filteredTweets]);
+  useEffect(() => {
+    if (filteredTweets) {
+      dispatch({type:"selected/update" , data:filteredTweets[0]})
+    }
+  }, [filteredTweets]);
 
   if (!data || !filteredTweets) {
     return <div style={{ color: "white" }}>Loading...</div>;
