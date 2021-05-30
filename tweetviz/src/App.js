@@ -13,6 +13,7 @@ import {
 } from "d3";
 import { useData } from "./hooks/useData";
 import { AxisLeft } from "./components/visualization/AxisLeft";
+import { Loading } from "./components/common/Loading";
 import { Marks } from "./components/visualization/Marks";
 import { Tweet } from "./components/visualization/Tweet";
 import { Legend } from "./components/visualization/Legend";
@@ -58,7 +59,7 @@ const App = () => {
   }, [filteredTweets]);
 
   if (!data || !filteredTweets) {
-    return <div style={{ color: "white" }}>Loading...</div>;
+    return <Loading />;
   }
 
   const toggle = () => {
@@ -85,7 +86,7 @@ const App = () => {
     simulation = forceSimulation(filteredTweets)
       .force(
         "collide",
-        forceCollide((d) => d.influenceNumber*0.4 + 5)
+        forceCollide((d) => d.influenceNumber * 0.4 + 5)
       )
       .stop()
       .tick(240);
