@@ -131,6 +131,34 @@ code {
   cursor: pointer
 }
 
+.legend_item{
+  display : flex;
+  align-items: center;
+}
+
+.legend_title{
+  color: white;
+  margin-left: 15px;
+  width: 80%;
+}
+
+.bubble{
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+}
+
+.legend{
+  padding: 15px;
+  color :white;
+  border: white 2px solid;
+  border-radius: 20px;
+}
+
+.lengend_main_title{
+  margin : 0;
+}
+
 .spinner-box {
   width: 100vw;
   height: 100vh;
