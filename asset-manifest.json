@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/COVID19-TweetViz/static/css/main.f7760a2f.chunk.css",
+    "main.css": "/COVID19-TweetViz/static/css/main.12588f76.chunk.css",
     "main.js": "/COVID19-TweetViz/static/js/main.e3ff69e5.chunk.js",
     "main.js.map": "/COVID19-TweetViz/static/js/main.e3ff69e5.chunk.js.map",
     "runtime-main.js": "/COVID19-TweetViz/static/js/runtime-main.6c2d2a76.js",
@@ -10,14 +10,14 @@
     "static/js/3.936dfedf.chunk.js": "/COVID19-TweetViz/static/js/3.936dfedf.chunk.js",
     "static/js/3.936dfedf.chunk.js.map": "/COVID19-TweetViz/static/js/3.936dfedf.chunk.js.map",
     "index.html": "/COVID19-TweetViz/index.html",
-    "static/css/main.f7760a2f.chunk.css.map": "/COVID19-TweetViz/static/css/main.f7760a2f.chunk.css.map",
+    "static/css/main.12588f76.chunk.css.map": "/COVID19-TweetViz/static/css/main.12588f76.chunk.css.map",
     "static/js/2.9408e729.chunk.js.LICENSE.txt": "/COVID19-TweetViz/static/js/2.9408e729.chunk.js.LICENSE.txt",
     "static/media/data.0c5f679a.csv": "/COVID19-TweetViz/static/media/data.0c5f679a.csv"
   },
   "entrypoints": [
     "static/js/runtime-main.6c2d2a76.js",
     "static/js/2.9408e729.chunk.js",
-    "static/css/main.f7760a2f.chunk.css",
+    "static/css/main.12588f76.chunk.css",
     "static/js/main.e3ff69e5.chunk.js"
   ]
 }
