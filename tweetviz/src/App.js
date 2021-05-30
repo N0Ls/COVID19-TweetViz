@@ -55,7 +55,7 @@ const App = () => {
         filterObjs((tweet) => tweet.type === state.type)(state.tweets)
       );
     }
-  }, [state.tweets]);
+  }, [state.tweets, state.type]);
 
   // useEffect(() => {
   //   if (filteredTweets) {
