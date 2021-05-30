@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/COVID19-TweetViz/static/css/main.16b9aea4.chunk.css",
-    "main.js": "/COVID19-TweetViz/static/js/main.944df074.chunk.js",
-    "main.js.map": "/COVID19-TweetViz/static/js/main.944df074.chunk.js.map",
-    "runtime-main.js": "/COVID19-TweetViz/static/js/runtime-main.68e89e88.js",
-    "runtime-main.js.map": "/COVID19-TweetViz/static/js/runtime-main.68e89e88.js.map",
-    "static/js/2.f8d86edc.chunk.js": "/COVID19-TweetViz/static/js/2.f8d86edc.chunk.js",
-    "static/js/2.f8d86edc.chunk.js.map": "/COVID19-TweetViz/static/js/2.f8d86edc.chunk.js.map",
-    "static/js/3.fe0b4a3e.chunk.js": "/COVID19-TweetViz/static/js/3.fe0b4a3e.chunk.js",
-    "static/js/3.fe0b4a3e.chunk.js.map": "/COVID19-TweetViz/static/js/3.fe0b4a3e.chunk.js.map",
+    "main.css": "/COVID19-TweetViz/static/css/main.f7760a2f.chunk.css",
+    "main.js": "/COVID19-TweetViz/static/js/main.e3ff69e5.chunk.js",
+    "main.js.map": "/COVID19-TweetViz/static/js/main.e3ff69e5.chunk.js.map",
+    "runtime-main.js": "/COVID19-TweetViz/static/js/runtime-main.6c2d2a76.js",
+    "runtime-main.js.map": "/COVID19-TweetViz/static/js/runtime-main.6c2d2a76.js.map",
+    "static/js/2.9408e729.chunk.js": "/COVID19-TweetViz/static/js/2.9408e729.chunk.js",
+    "static/js/2.9408e729.chunk.js.map": "/COVID19-TweetViz/static/js/2.9408e729.chunk.js.map",
+    "static/js/3.936dfedf.chunk.js": "/COVID19-TweetViz/static/js/3.936dfedf.chunk.js",
+    "static/js/3.936dfedf.chunk.js.map": "/COVID19-TweetViz/static/js/3.936dfedf.chunk.js.map",
     "index.html": "/COVID19-TweetViz/index.html",
-    "static/css/main.16b9aea4.chunk.css.map": "/COVID19-TweetViz/static/css/main.16b9aea4.chunk.css.map",
-    "static/js/2.f8d86edc.chunk.js.LICENSE.txt": "/COVID19-TweetViz/static/js/2.f8d86edc.chunk.js.LICENSE.txt",
+    "static/css/main.f7760a2f.chunk.css.map": "/COVID19-TweetViz/static/css/main.f7760a2f.chunk.css.map",
+    "static/js/2.9408e729.chunk.js.LICENSE.txt": "/COVID19-TweetViz/static/js/2.9408e729.chunk.js.LICENSE.txt",
     "static/media/data.0c5f679a.csv": "/COVID19-TweetViz/static/media/data.0c5f679a.csv"
   },
   "entrypoints": [
-    "static/js/runtime-main.68e89e88.js",
-    "static/js/2.f8d86edc.chunk.js",
-    "static/css/main.16b9aea4.chunk.css",
-    "static/js/main.944df074.chunk.js"
+    "static/js/runtime-main.6c2d2a76.js",
+    "static/js/2.9408e729.chunk.js",
+    "static/css/main.f7760a2f.chunk.css",
+    "static/js/main.e3ff69e5.chunk.js"
   ]
 }
