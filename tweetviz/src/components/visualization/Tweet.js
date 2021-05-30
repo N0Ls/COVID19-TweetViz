@@ -14,20 +14,21 @@ return(<>
         </div>
         <div className="tweet_content">
           <p className="tweet_text">{d.text}</p>
-          {/*<img className="tweet_media" alt="tweet media" src={d.media} /> */}
         </div>
         <div className="tweet_footer">
           <div className="tweet_date">
             {d.formatedDate.getHours() < 10 ? "0"+d.formatedDate.getHours():d.formatedDate.getHours()}
             :
-            {d.formatedDate.getMinutes()< 10 ? "0" +d.formatedDate.getMinutes():d.formatedDate.getMinutes()}
+            {d.formatedDate.getMinutes()< 10 ? "0" + d.formatedDate.getMinutes():d.formatedDate.getMinutes()}
             {" "} · {" "}
-            {d.formatedDate.getDate()}/{d.formatedDate.getMonth() + 1 < 10 ? "0"+(d.formatedDate.getMonth() + 1):d.formatedDate.getMonth() + 1}/
-            {d.formatedDate.getYear()}
+            {d.formatedDate.getDate() < 10? "0" + d.formatedDate.getDate():d.formatedDate.getDate()}
+            /{(d.formatedDate.getMonth() + 1) < 10 ? "0"+(d.formatedDate.getMonth() + 1):(d.formatedDate.getMonth() + 1)}
+            /{d.formatedDate.getFullYear()}
           </div>
           <div className="tweet_influence">
-            <div><span>{d.retweet_count}</span> <span className="fas fa-retweet"></span> </div>   
-            <div><span>{d.favorite_count}</span> <span className="fas fa-heart"></span></div>
+            <div><span>{parseInt(d.retweet_count).toLocaleString()}</span> <span className="fas fa-retweet"></span> </div>   
+            <div><span>{parseInt(d.favorite_count).toLocaleString()}</span> <span className="fas fa-heart"></span></div>
+            <div><span>{parseInt(d.user_followers_count).toLocaleString()}</span> <span className="fas fa-users"></span></div>
           </div>
         </div>
       </div>

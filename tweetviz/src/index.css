@@ -42,7 +42,6 @@ code {
   text-transform: uppercase;
 }
 
-
 .switch_button{
   color: white;
   font-size : 1.2em;
@@ -64,6 +63,7 @@ code {
   color :white;
   border: white 2px solid;
   border-radius: 20px;
+  margin-bottom : 25px;
 }
 
 .tweet_footer{
@@ -79,9 +79,11 @@ code {
 .user_name{
   width: 100%;
 }
+
 .user_display_name{
   margin : 0;
 }
+
 .user_handle{
   margin : 0;
 }
@@ -94,10 +96,14 @@ code {
 .tweet_influence{
   display: flex;
   flex-direction: row;
+  font-size: 1.1em;
+  margin-top : 5px;
 }
+
 .tweet_influence > div > span{
   margin-right : 5px;
 }
+
 .tweet_influence > div{
   margin-right: 10px;
 }
@@ -118,4 +124,32 @@ code {
 
 .mark:hover {
   cursor: pointer
+}
+
+.legend_item{
+  display : flex;
+  align-items: center;
+}
+
+.legend_title{
+  color: white;
+  margin-left: 15px;
+  width: 80%;
+}
+
+.bubble{
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+}
+
+.legend{
+  padding: 15px;
+  color :white;
+  border: white 2px solid;
+  border-radius: 20px;
+}
+
+.lengend_main_title{
+  margin : 0;
 }

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "d3": "^6.6.2",
     "d3-dsv": "^2.0.0",
+    "intl": "^1.2.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
